@@ -1,47 +1,80 @@
-# Solarion
+<div align="center">
 
-Landing inmersiva de Solarion: energía solar portátil e inteligente, diseñada en Popayán, Colombia.
+![Solarion](docs/banner.svg)
 
-Identidad basada en `GuiaMarca.pdf`: paleta monocromática (negro carbón `#0A0A0A` a blanco digital `#FFFFFF`), formas orgánicas y el patrón de ondas halftone de la marca convertido en sistema interactivo.
+<br>
 
-## Stack
+[![React](https://img.shields.io/badge/React_19-0a0a0a?style=for-the-badge&logo=react&logoColor=ffffff)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite_7-0a0a0a?style=for-the-badge&logo=vite&logoColor=ffffff)](https://vite.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-0a0a0a?style=for-the-badge&logo=typescript&logoColor=ffffff)](https://www.typescriptlang.org)
+[![Tailwind](https://img.shields.io/badge/Tailwind_v4-0a0a0a?style=for-the-badge&logo=tailwindcss&logoColor=ffffff)](https://tailwindcss.com)
+[![GSAP](https://img.shields.io/badge/GSAP-0a0a0a?style=for-the-badge&logo=greensock&logoColor=ffffff)](https://gsap.com)
 
-- React 19 + Vite 7 + TypeScript
-- TailwindCSS v4 (tokens de marca en `src/styles/index.css`)
-- GSAP + ScrollTrigger (scrolltelling), SplitType (tipografía cinética), Lenis (scroll suave)
-- Tipografías: Comfortaa Variable (display, eco de Ibrand) y Outfit Variable (texto, eco de Geom)
+Landing inmersiva para **Solarion**, energía solar portátil hecha en Popayán, Colombia.
 
-## Comandos
+</div>
+
+<br>
+
+![](docs/divider.svg)
+
+## La experiencia
+
+Toda la página vive en blanco y negro, los cinco tonos exactos de la guía de marca. El color existe, pero hay que ganárselo: el cursor es una linterna que lo revela al pasar sobre cada imagen.
+
+El scroll cuenta una historia. Se entra por una puerta que pide deslizar (con un golpe de sonido espacial sintetizado en Web Audio, sin un solo mp3), el titular rota frases letra a letra, el producto se presenta con la foto anclada mientras sus pilares se encienden, los territorios se recorren en un viaje horizontal con palabras fantasma cruzando en paralaje, la historia se dibuja sobre un cable energizado y el wordmark del cierre se carga letra por letra como una batería. Una batería vertical en el margen marca cuánto llevas: la página se carga contigo.
+
+| | | | | |
+|:-:|:-:|:-:|:-:|:-:|
+| ![](https://img.shields.io/badge/%20-0A0A0A?style=flat-square) | ![](https://img.shields.io/badge/%20-212121?style=flat-square) | ![](https://img.shields.io/badge/%20-424242?style=flat-square) | ![](https://img.shields.io/badge/%20-AAAAAA?style=flat-square) | ![](https://img.shields.io/badge/%20-FFFFFF?style=flat-square) |
+| `#0A0A0A` | `#212121` | `#424242` | `#AAAAAA` | `#FFFFFF` |
+
+![](docs/divider.svg)
+
+## Correr el proyecto
 
 ```bash
 npm install
-npm run dev       # desarrollo
-npm run build     # build de producción
-npm run preview   # servir dist/
-
-# screenshot headless (requiere Chrome):
-node scripts/screenshot.mjs http://localhost:4173/ out.png [scrollY] [width] [height]
+npm run dev        # desarrollo en localhost:5173
+npm run build      # build de producción
+npm run preview    # sirve dist/ en localhost:4173
 ```
 
-## Estructura
+<img src="docs/charge.svg" width="180" alt="">
+
+## Cómo está organizado
 
 ```
 src/
-  animations/    una animación GSAP por archivo (scrub, pin, pan, draw...)
+  animations/      una animación GSAP por archivo, cada una devuelve su cleanup
   components/
-    landing/     secciones encapsuladas (hero, manifesto, product, solutions,
-                 stats, testimonials, story, cta, nav, footer)
-    ui/          piezas reutilizables (cursor, botón magnético, preloader...)
-  constants/     todo el copy y datos reales del negocio
-  hooks/         useLenis, useMouse, useReducedMotion, useSplitReveal
-  layouts/       RootLayout (nav + footer + cursor + grain + Lenis)
-  lib/           registro central de GSAP
-  pages/         Landing (orquesta la narrativa de scroll)
-  styles/        tokens de marca + base
-  types/         contratos de datos
-  utils/         helpers puros
+    landing/       secciones encapsuladas: hero, manifesto, product, solutions,
+                   stats, testimonials, story, cta, nav, footer
+    ui/            piezas transversales: puerta de entrada, cursor de luz,
+                   velo monocromo, batería de scroll, botón de regreso
+  hooks/           useLenis, useAnchorScroll, useSplitReveal, useReducedMotion...
+  constants/       todo el copy y los datos reales del negocio en un solo lugar
+  lib/             registro de GSAP, referencia de Lenis, sting de audio
+  styles/          tokens de marca y base (Tailwind v4)
 ```
 
-Accesibilidad: toda la capa de motion respeta `prefers-reduced-motion`; el cursor personalizado solo se activa con puntero fino.
+Las reglas de la casa: solo se animan `transform`, `opacity` y `filter`; los canvas se pausan fuera de viewport y limitan su DPR; los loops se detienen al ocultar la pestaña; y absolutamente todo el motion colapsa con `prefers-reduced-motion`. El scroll sostiene 60 fps con margen.
 
-El sitio anterior (template Bootstrap "SolarFlex") quedó preservado en `legacy/`.
+## Verificación
+
+En `scripts/` hay herramientas de QA con puppeteer: capturas a cualquier profundidad de scroll y con el mouse posado donde quieras, medición de FPS por sección y un recorrido E2E que cruza la puerta, espera la rotación del titular y lee la batería de scroll.
+
+```bash
+node scripts/fps.mjs
+node scripts/verify-gate.mjs
+```
+
+<br>
+
+<div align="center">
+
+![](docs/divider.svg)
+
+**Solarion** · Popayán, Cauca, Colombia
+
+</div>
