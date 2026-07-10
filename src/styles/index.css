@@ -1,0 +1,104 @@
+@import "@fontsource-variable/comfortaa";
+@import "@fontsource-variable/outfit";
+@import "tailwindcss";
+
+/*
+  Solarion design tokens. Fuente: GuiaMarca.pdf.
+  Paleta monocromática estricta: la marca no tiene color de acento.
+  La "luz" (blanco digital) es el único énfasis permitido.
+*/
+@theme {
+  --color-carbon: #0a0a0a; /* negro carbón profundo */
+  --color-coal: #212121; /* gris carbón */
+  --color-graphite: #424242; /* gris grafito */
+  --color-silver: #aaaaaa; /* gris plata */
+  --color-light: #ffffff; /* blanco digital */
+
+  --font-display: "Comfortaa Variable", ui-rounded, system-ui, sans-serif;
+  --font-body: "Outfit Variable", system-ui, sans-serif;
+
+  --ease-solar: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --z-grain: 60;
+  --z-cursor: 70;
+  --z-nav: 50;
+  --z-preloader: 80;
+}
+
+html {
+  background-color: var(--color-carbon);
+  color-scheme: dark;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-carbon);
+  color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--color-light);
+  color: var(--color-carbon);
+}
+
+/* Scrollbar sobrio, coherente con el monocromo */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-carbon);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-graphite);
+  border-radius: 999px;
+  border: 2px solid var(--color-carbon);
+}
+
+/* Las líneas de SplitType necesitan clip para el reveal por máscara */
+.split-line-mask .line {
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+/* Oculta el cursor nativo solo cuando el custom cursor está activo */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button {
+  cursor: none;
+}
+
+/* Linterna solar: el velo desatura la imagen; el hover la enciende a color */
+.light-veil {
+  background: rgb(66 66 66);
+  transition: opacity 0.55s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .light-parent:hover .light-veil {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button {
+    cursor: auto;
+  }
+}
