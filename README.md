@@ -75,6 +75,6 @@ node scripts/verify-gate.mjs
 
 ![](docs/divider.svg)
 
-**Solarion** · Popayán, Cauca, Colombia
+**Solarion** · Popayán, Cauca, Colombia - Creado por SoftLab
 
 </div>
